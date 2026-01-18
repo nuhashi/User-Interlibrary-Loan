@@ -41,3 +41,13 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
+# Tambah ini di paling bawah fail views.py anda
+
+def guest_view(request):
+    return render(request, 'interfaceguest.html')
+
+def staff_view(request):
+    return render(request, 'interfacestaff.html')
+
+def bank_view(request):
+    return render(request, 'interfacebank.html')
