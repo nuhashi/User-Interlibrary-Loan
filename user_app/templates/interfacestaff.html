@@ -1,9 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Interface Kawan</title>
+    <meta charset="UTF-8">
+    <title>Staff Interlibrary System - Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 30px; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #007bff; padding-bottom: 15px; margin-bottom: 30px; }
+        .btn-logout { background-color: #343a40; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        
+        h2 { color: #007bff; margin-top: 50px; display: flex; align-items: center; gap: 10px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #fff; }
+        th, td { padding: 15px; border: 1px solid #dee2e6; text-align: left; }
+        th { background-color: #e9ecef; font-weight: bold; text-transform: uppercase; font-size: 13px; }
+
+        /* Butang ADD NEW */
+        .btn-add { background-color: #28a745; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; display: inline-block; margin-bottom: 10px; font-weight: bold; transition: 0.3s; }
+        .btn-add:hover { background-color: #218838; transform: translateY(-2px); }
+
+        /* Container Butang Update & Delete */
+        .action-group { display: flex; gap: 8px; width: 100%; }
+        
+        /* Butang Action (Update/Delete) Sama Saiz */
+        .btn-action { 
+            flex: 1; 
+            text-align: center; 
+            padding: 10px 0; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-size: 13px; 
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
+        }
+        .btn-update { background-color: #ffc107; color: #212529; }
+        .btn-update:hover { background-color: #e0a800; }
+        
+        .btn-delete { background-color: #dc3545; }
+        .btn-delete:hover { background-color: #c82333; }
+
+        .empty-row { text-align: center; color: #888; font-style: italic; }
+    </style>
 </head>
 <body>
-    <h1>Ini adalah interface yang saya buat!</h1>
-</body>
-</html>
+
+<div class="container">
+    <div class="header">
+        <h1>STAFF INTER-LIBRARY DASHBOARD</h1>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">LOGOUT</button>
+        </form>
+    </div>
+
+    <h2>1. Library Management</h2>
+    <a href="/admin/staff_app/library/add/" class="btn-add">+ ADD NEW LIBRARY</a>
+    <table>
+        <tr><th>Request ID</th><th>Library Name</th><th>Status</th><th style="width: 250px;">Actions</th></tr>
+        {% for lib in libraries %}
+        <tr>
+            <td>{{ lib.request_id }}</td>
+            <td>{{ lib.library_name }}</td>
+            <td>{{ lib.status }}</td>
+            <td>
+                <div class="action-group">
+                    <a href="/admin/staff_app/library/{{ lib.request_id }}/change/" class="btn-action btn-update">Update</a>
+                    <a href="/admin/staff_app/library/{{ lib.request_id }}/delete/" class="btn-action btn-delete">Delete</a>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" class="empty-row">No library data found.</td></tr>
+        {% endfor %}
+    </table>
+
+    <h2>2. Book Inventory</h2>
+    <a href="/admin/staff_app/book/add/" class="btn-add">+ ADD NEW BOOK</a>
+    <table>
+        <tr><th>Book ID</th><th>Title</th><th>Author</th><th>Status</th><th style="width: 250px;">Actions</th></tr>
+        {% for book in books %}
+          {% endfor %}
+        <tr>
+            <td>{{ book.book_id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.status }}</td>
+            <td>
+                <div class="action-group">
+                    <a href="/admin/staff_app/book/{{ book.book_id }}/change/" class="btn-action btn-update">Update</a><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff Interlibrary System - Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 30px; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 1200px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #007bff; padding-bottom: 15px; margin-bottom: 30px; }
+        .btn-logout { background-color: #343a40; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        
+        h2 { color: #007bff; margin-top: 50px; display: flex; align-items: center; gap: 10px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #fff; }
+        th, td { padding: 15px; border: 1px solid #dee2e6; text-align: left; }
+        th { background-color: #e9ecef; font-weight: bold; text-transform: uppercase; font-size: 13px; }
+
+        /* Butang ADD NEW */
+        .btn-add { background-color: #28a745; color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; display: inline-block; margin-bottom: 10px; font-weight: bold; transition: 0.3s; }
+        .btn-add:hover { background-color: #218838; transform: translateY(-2px); }
+
+        /* Container Butang Update & Delete */
+        .action-group { display: flex; gap: 8px; width: 100%; }
+        
+        /* Butang Action (Update/Delete) Sama Saiz */
+        .btn-action { 
+            flex: 1; 
+            text-align: center; 
+            padding: 10px 0; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-size: 13px; 
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
+        }
+        .btn-update { background-color: #ffc107; color: #212529; }
+        .btn-update:hover { background-color: #e0a800; }
+        
+        .btn-delete { background-color: #dc3545; }
+        .btn-delete:hover { background-color: #c82333; }
+
+        .empty-row { text-align: center; color: #888; font-style: italic; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>STAFF INTER-LIBRARY DASHBOARD</h1>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">LOGOUT</button>
+        </form>
+    </div>
+
+    <h2>1. Library Management</h2>
+    <a href="/admin/staff_app/library/add/" class="btn-add">+ ADD NEW LIBRARY</a>
+    <table>
+        <tr><th>Request ID</th><th>Library Name</th><th>Status</th><th style="width: 250px;">Actions</th></tr>
+        {% for lib in libraries %}
+        <tr>
+            <td>{{ lib.request_id }}</td>
+            <td>{{ lib.library_name }}</td>
+            <td>{{ lib.status }}</td>
+            <td>
+                <div class="action-group">
+                    <a href="/admin/staff_app/library/{{ lib.request_id }}/change/" class="btn-action btn-update">Update</a>
+                    <a href="/admin/staff_app/library/{{ lib.request_id }}/delete/" class="btn-action btn-delete">Delete</a>
+                </div>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4" class="empty-row">No library data found.</td></tr>
+        {% endfor %}
+    </table>
+
+    <h2>2. Book Inventory</h2>
+    <a href="/admin/staff_app/book/add/" class="btn-add">+ ADD NEW BOOK</a>
+    <table>
+        <tr><th>Book ID</th><th>Title</th><th>Author</th><th>Status</th><th style="width: 250px;">Actions</th></tr>
+        {% for book in books %}
+        {% endfor %}
+        <tr>
+            <td>{{ book.book_id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.status }}</td>
+            <td>
+                <div class="action-group">
+                    <a href="/admin/staff_app/book/{{ book.book_id }}/change/" class="btn-action btn-update">Update</a>
