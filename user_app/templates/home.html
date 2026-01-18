@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - ILL System</title>
+</head>
+<body style="text-align: center; font-family: sans-serif; padding-top: 100px; background-color: #f4f4f4;">
+    <h1>Welcome to Interlibrary Loan System</h1>
+    <p>The easiest way to request and track your books.</p>
+    
+    <div style="margin-top: 30px;">
+        {% if user.is_authenticated %}
+            <p>Hello, <strong>{{ user.username }}</strong>!</p>
+            <a href="{% url 'dashboard' %}" style="padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 5px;">Go to Dashboard</a>
+            <br><br>
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="background:none; border:none; color:blue; cursor:pointer; text-decoration:underline;">Logout</button>
+            </form>
+{% else %}
+    <a href="{% url 'login' %}" style="padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 5px;">Login to System</a>
+    
+    <p style="margin-top: 20px;">New here? <a href="{% url 'register' %}" style="color: blue;">Create an account</a></p>
+{% endif %}
+    </div>
+</body>
+</html>

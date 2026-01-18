@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - ILL System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .register-card {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 { text-align: center; color: #1a1a1a; margin-bottom: 20px; }
+        .helptext, .helptext ul { font-size: 0.8em; color: #666; margin-bottom: 10px; }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        button:hover { background-color: #218838; }
+        .footer-link { text-align: center; margin-top: 20px; font-size: 0.9em; }
+        .footer-link a { color: #007bff; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="register-card">
+    <h2>Create New Account</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Register Now</button>
+    </form>
+    <div class="footer-link">
+        Already have an account? <a href="{% url 'login' %}">Login here</a>
+    </div>
+</div>
+
+</body>
+</html>
